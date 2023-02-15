@@ -197,7 +197,8 @@ async function main(){
     const queryString = window.location.search;
     const urlParams = new URLSearchParams(queryString);
     var center = urlParams.get('center') ? parseUrlList(urlParams.get('center'), parseFloat) : [2561892.6539999316,1205224.086300917]
-    var configFile = urlParams.get('config') ? urlParams.get('config') : './layer-config.json';
+    var baseLayersConfigFile = urlParams.get('config') ? urlParams.get('config') : './baselayers.json';
+    var restrictedLayersConfigFile = urlParams.get('layers') ? urlParams.get('layers') : './layers.json';
 
     // define the swiss LV95 projection
     var projection2056 = new ol.proj.Projection({
@@ -227,12 +228,12 @@ async function main(){
     });
 
     // load layer tree config from config file
-    const layerTreeConfig = await fetch(configFile).then((response) => response.json());
+    const baseLayerTreeConfig = await fetch(baseLayersConfigFile).then((response) => response.json());
 
     // background layers
     const baseLayersRadioButtonId = 'baseLayersRadioButton';
     var baseLayersHtmlContent = `<h2>Background</h2>`;
-    var baseLayersStuff = createLayerTree(layerTreeConfig.baselayers, projection2056, baseLayersRadioButtonId);
+    var baseLayersStuff = createLayerTree(baseLayerTreeConfig, projection2056, baseLayersRadioButtonId);
     const WMTSBaseLayerGroup = new ol.layer.Group({
         layers: (await baseLayersStuff).layers
     })
@@ -243,9 +244,12 @@ async function main(){
     registerChangeEventOnLayerTree(baseLayerElements, WMTSBaseLayerGroup);
 
     // normal layers
+// load layer tree config from config file
+    const restrictedLayerTreeConfig = await fetch(restrictedLayersConfigFile).then((response) => response.json());
+
     const layersRadioButtonId = 'layersRadioButton';
     var layersHtmlContent = `<h2>Layers</h2><input type="radio" name="${layersRadioButtonId}" value="None">None<br>`;
-    var layersStuff = createLayerTree(layerTreeConfig.layertree, projection2056, layersRadioButtonId);
+    var layersStuff = createLayerTree(restrictedLayerTreeConfig, projection2056, layersRadioButtonId);
     const LayerGroup = new ol.layer.Group({
         layers: (await layersStuff).layers,
     })

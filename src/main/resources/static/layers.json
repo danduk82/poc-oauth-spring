@@ -1,0 +1,34 @@
+[
+  {
+    "serverurl":"https://geowms.bl.ch",
+    "title": "WMS canton BL",
+    "type": "wms",
+    "version": "1.1.1",
+    "layers": [
+      {
+        "title": "Bodenschadstoffe PCB",
+        "queriable": true,
+        "name": "bodenschadstoffe_pcb"
+      },{
+        "title": "Boden Verdachtsflächen Bahn",
+        "queriable": true,
+        "name": "boden_verdachtsflaechen_bahn"
+      }
+    ]
+  },{
+    "serverurl":"https://wmts.geo.admin.ch/EPSG/2056/1.0.0/WMTSCapabilities.xml",
+    "title": "WMTS Swisstopo",
+    "type": "wmts",
+    "layers": [
+      {
+        "title": "Swissimage",
+        "name": "ch.swisstopo.swissimage-product",
+        "matrixset": "2056_26"
+      },{
+        "title": "Pixelkarte Grau",
+        "name": "ch.swisstopo.pixelkarte-grau",
+        "matrixset": "2056_26"
+      }
+    ]
+  }
+]

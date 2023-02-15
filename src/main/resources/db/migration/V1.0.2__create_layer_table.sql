@@ -6,7 +6,9 @@ CREATE TABLE LAYER
     ID           INT8,
     CONSTRAINT LAYER_PK PRIMARY KEY (ID),
     FK_SERVER_ID INT8,
-    NAME varchar(256)
+    NAME varchar(256),
+    TITLE varchar(256),
+    MATRIXSET varchar(256)
 );
 
 

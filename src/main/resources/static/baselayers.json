@@ -1,0 +1,22 @@
+[
+  {
+    "serverurl":"https://wmts.geo.admin.ch/EPSG/2056/1.0.0/WMTSCapabilities.xml",
+    "type": "wmts",
+    "layers": [
+      {
+        "title": "Swissimage Product",
+        "name": "ch.swisstopo.swissimage-product",
+        "checked": true,
+        "matrixset": "2056_26"
+      },{
+        "title": "Pixelkarte Grau",
+        "name": "ch.swisstopo.pixelkarte-grau",
+        "matrixset": "2056_26"
+      },{
+        "title": "Pixelkarte Farbe",
+        "name": "ch.swisstopo.pixelkarte-farbe",
+        "matrixset": "2056_26"
+      }
+    ]
+  }
+]
