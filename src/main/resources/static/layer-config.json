@@ -1,22 +1,6 @@
 {
   "layertree":[
     {
-      "serverurl":"https://sitn.ne.ch/production/wsgi/mapserv_proxy?ogcserver=source+for+image%2Fpng",
-      "title": "WMS canton NE",
-      "type": "wms",
-      "version": "1.3.0",
-      "layers": [
-        {
-          "title": "Parcelles",
-          "queriable": true,
-          "name": "parcelles"
-        },{
-          "title": "Addresses SITN",
-          "queriable": true,
-          "name": "mo02_adresses_sitn"
-        }
-      ]
-    },{
       "serverurl":"https://geowms.bl.ch",
       "title": "WMS canton BL",
       "type": "wms",

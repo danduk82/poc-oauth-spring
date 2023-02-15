@@ -59,7 +59,7 @@ function parseUrlList(parameter, callback){
 }
 
 /**
- * checks that there is a '?' characher in WMS server url, otherwise adds it to the url
+ * checks that there is a '?' character in WMS server url, otherwise adds it to the url
  * @returns String: the sanitized url
  * @param {*} url
  */
