@@ -1,4 +1,4 @@
-RoleRepositorypackage org.danduk.oauth2.integration.persistence.repositories;
+package org.danduk.oauth2.integration.persistence.repositories;
 
 import org.danduk.oauth2.integration.persistence.entities.RoleEntity;
 import org.danduk.oauth2.integration.persistence.entities.UsersEntity;
