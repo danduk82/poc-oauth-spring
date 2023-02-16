@@ -1,0 +1,829 @@
+openapi: 3.0.3
+info:
+  title: Swagger Petstore - OpenAPI 3.0
+  description: |-
+    POC about oauth in a geoportal
+  contact:
+    email: andrea.borghi@camptocamp.com
+  license:
+    name: Apache 2.0
+    url: http://www.apache.org/licenses/LICENSE-2.0.html
+  version: 1.0.1
+servers:
+  - url: http://localhost:8080/api/
+tags:
+  - name: layer
+    description: layers
+  - name: user
+    description: Operations about user
+paths:
+  /layer/{id}:
+    get:
+      tags:
+        - layer
+      parameters:
+        - in: path
+          name: id
+          schema:
+            type: integer
+          required: true
+          description: Numeric layer ID
+      summary: Get an existing layer
+      description: Get an existing layer by Id
+      operationId: layerGetById
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/layer'          
+        '400':
+          description: Invalid ID supplied
+        '404':
+          description: layer not found
+      security:
+        - restricted_auth:
+            - read:config
+    put:
+      tags:
+        - layer
+      parameters:
+        - in: path
+          name: id
+          schema:
+            type: integer
+          required: true
+          description: Numeric layer ID
+      summary: Update an existing layer
+      description: Update an existing layer by Id
+      operationId: layerPutById
+      requestBody:
+        description: Update an existent layer
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/layer'
+        required: true
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/layer'          
+        '400':
+          description: Invalid ID supplied
+        '404':
+          description: layer not found
+        '405':
+          description: Validation exception
+      security:
+        - restricted_auth:
+            - write:config
+            - read:config
+  /layer:
+    get:
+      tags:
+        - layer
+      summary: Get all layers
+      description: Get all layers
+      operationId: layerGetAll
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/layerList'          
+        '405':
+          description: Invalid input
+      security:
+        - restricted_auth:
+            - write:config
+            - read:config
+    post:
+      tags:
+        - layer
+      summary: Add a new layer
+      description: Add a new layer
+      operationId: layerPost
+      requestBody:
+        description: Create a new layer
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/layer'
+        required: true
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/layer'
+        '405':
+          description: Invalid input
+      security:
+        - restricted_auth:
+            - write:config
+            - read:config
+
+  /server/{id}:
+    get:
+      tags:
+        - server
+      parameters:
+        - in: path
+          name: id
+          schema:
+            type: integer
+          required: true
+          description: Numeric server ID
+      summary: Get an existing server
+      description: Get an existing server by Id
+      operationId: serverGetById
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/server'          
+        '400':
+          description: Invalid ID supplied
+        '404':
+          description: server not found
+      security:
+        - restricted_auth:
+            - read:config
+    put:
+      tags:
+        - server
+      parameters:
+        - in: path
+          name: id
+          schema:
+            type: integer
+          required: true
+          description: Numeric server ID
+      summary: Update an existing server
+      description: Update an existing server by Id
+      operationId: serverPutById
+      requestBody:
+        description: Update an existent server
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/server'
+        required: true
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/server'          
+        '400':
+          description: Invalid ID supplied
+        '404':
+          description: server not found
+        '405':
+          description: Validation exception
+      security:
+        - restricted_auth:
+            - write:config
+            - read:config
+  /server:
+    get:
+      tags:
+        - server
+      summary: Get all servers
+      description: Get all servers
+      operationId: serverGetAll
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/serverList'
+        '405':
+          description: Invalid input
+      security:
+        - restricted_auth:
+            - write:config
+            - read:config
+    post:
+      tags:
+        - server
+      summary: Add a new server
+      description: Add a new server
+      operationId: serverPost
+      requestBody:
+        description: Create a new server
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/server'
+        required: true
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/server'          
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/server'
+        '405':
+          description: Invalid input
+      security:
+        - restricted_auth:
+            - write:config
+            - read:config
+
+  /acl/{id}:
+    get:
+      tags:
+        - acl
+      parameters:
+        - in: path
+          name: id
+          schema:
+            type: integer
+          required: true
+          description: Numeric acl ID
+      summary: Get an existing acl
+      description: Get an existing acl by Id
+      operationId: aclGetById
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/acl'          
+        '400':
+          description: Invalid ID supplied
+        '404':
+          description: acl not found
+      security:
+        - restricted_auth:
+            - read:config
+    put:
+      tags:
+        - acl
+      parameters:
+        - in: path
+          name: id
+          schema:
+            type: integer
+          required: true
+          description: Numeric acl ID
+      summary: Update an existing acl
+      description: Update an existing acl by Id
+      operationId: aclPutById
+      requestBody:
+        description: Update an existent acl
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/acl'
+        required: true
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/acl'          
+        '400':
+          description: Invalid ID supplied
+        '404':
+          description: acl not found
+        '405':
+          description: Validation exception
+      security:
+        - restricted_auth:
+            - write:config
+            - read:config
+  /acl:
+    get:
+      tags:
+        - acl
+      summary: Get all acls
+      description: Get all acls
+      operationId: aclGetAll
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/aclList'
+        '405':
+          description: Invalid input
+      security:
+        - restricted_auth:
+            - write:config
+            - read:config
+    post:
+      tags:
+        - acl
+      summary: Add a new acl
+      description: Add a new acl
+      operationId: aclPost
+      requestBody:
+        description: Create a new acl
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/acl'
+        required: true
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/acl'          
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/acl'
+        '405':
+          description: Invalid input
+      security:
+        - restricted_auth:
+            - write:config
+            - read:config
+  /user/{id}:
+    get:
+      tags:
+        - user
+      parameters:
+        - in: path
+          name: id
+          schema:
+            type: integer
+          required: true
+          description: Numeric user ID
+      summary: Get an existing user
+      description: Get an existing user by Id
+      operationId: userGetById
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/user'          
+        '400':
+          description: Invalid ID supplied
+        '404':
+          description: user not found
+      security:
+        - restricted_auth:
+            - read:config
+    put:
+      tags:
+        - user
+      parameters:
+        - in: path
+          name: id
+          schema:
+            type: integer
+          required: true
+          description: Numeric user ID
+      summary: Update an existing user
+      description: Update an existing user by Id
+      operationId: userPutById
+      requestBody:
+        description: Update an existent user
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/user'
+        required: true
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/user'          
+        '400':
+          description: Invalid ID supplied
+        '404':
+          description: user not found
+        '405':
+          description: Validation exception
+      security:
+        - restricted_auth:
+            - write:config
+            - read:config
+  /user:
+    get:
+      tags:
+        - user
+      summary: Get all users
+      description: Get all users
+      operationId: userGetAll
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/userList'
+        '405':
+          description: Invalid input
+      security:
+        - restricted_auth:
+            - write:config
+            - read:config
+    post:
+      tags:
+        - user
+      summary: Add a new user
+      description: Add a new user
+      operationId: userPost
+      requestBody:
+        description: Create a new user
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/user'
+        required: true
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/user'          
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/user'
+        '405':
+          description: Invalid input
+      security:
+        - restricted_auth:
+            - write:config
+            - read:config
+  /role/{id}:
+    get:
+      tags:
+        - role
+      parameters:
+        - in: path
+          name: id
+          schema:
+            type: integer
+          required: true
+          description: Numeric role ID
+      summary: Get an existing role
+      description: Get an existing role by Id
+      operationId: roleGetById
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/role'          
+        '400':
+          description: Invalid ID supplied
+        '404':
+          description: role not found
+      security:
+        - restricted_auth:
+            - read:config
+    put:
+      tags:
+        - role
+      parameters:
+        - in: path
+          name: id
+          schema:
+            type: integer
+          required: true
+          description: Numeric role ID
+      summary: Update an existing role
+      description: Update an existing role by Id
+      operationId: rolePutById
+      requestBody:
+        description: Update an existent role
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/role'
+        required: true
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/role'          
+        '400':
+          description: Invalid ID supplied
+        '404':
+          description: role not found
+        '405':
+          description: Validation exception
+      security:
+        - restricted_auth:
+            - write:config
+            - read:config
+  /role:
+    get:
+      tags:
+        - role
+      summary: Get all roles
+      description: Get all roles
+      operationId: roleGetAll
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/roleList'
+        '405':
+          description: Invalid input
+      security:
+        - restricted_auth:
+            - write:config
+            - read:config
+    post:
+      tags:
+        - role
+      summary: Add a new role
+      description: Add a new role
+      operationId: rolePost
+      requestBody:
+        description: Create a new role
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/role'
+        required: true
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/role'          
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/role'
+        '405':
+          description: Invalid input
+      security:
+        - restricted_auth:
+            - write:config
+            - read:config
+  /bindings/{id}:
+    get:
+      tags:
+        - bindings
+      parameters:
+        - in: path
+          name: id
+          schema:
+            type: integer
+          required: true
+          description: Numeric bindings ID
+      summary: Get an existing bindings
+      description: Get an existing bindings by Id
+      operationId: bindingsGetById
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/bindings'          
+        '400':
+          description: Invalid ID supplied
+        '404':
+          description: bindings not found
+      security:
+        - restricted_auth:
+            - read:config
+    put:
+      tags:
+        - bindings
+      parameters:
+        - in: path
+          name: id
+          schema:
+            type: integer
+          required: true
+          description: Numeric bindings ID
+      summary: Update an existing bindings
+      description: Update an existing bindings by Id
+      operationId: bindingsPutById
+      requestBody:
+        description: Update an existent bindings
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/bindings'
+        required: true
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/bindings'          
+        '400':
+          description: Invalid ID supplied
+        '404':
+          description: bindings not found
+        '405':
+          description: Validation exception
+      security:
+        - restricted_auth:
+            - write:config
+            - read:config
+  /bindings:
+    get:
+      tags:
+        - bindings
+      summary: Get all bindingss
+      description: Get all bindingss
+      operationId: bindingsGetAll
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/bindingsList'
+        '405':
+          description: Invalid input
+      security:
+        - restricted_auth:
+            - write:config
+            - read:config
+    post:
+      tags:
+        - bindings
+      summary: Add a new bindings
+      description: Add a new bindings
+      operationId: bindingsPost
+      requestBody:
+        description: Create a new bindings
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/bindings'
+        required: true
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/bindings'          
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/bindings'
+        '405':
+          description: Invalid input
+      security:
+        - restricted_auth:
+            - write:config
+            - read:config
+  /layertree:
+    get:
+      tags:
+        - layertree
+      summary: Get layertree
+      description: Get layertree
+      operationId: layertreeGet
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/layertree'
+        '405':
+          description: Invalid input
+      security:
+        - restricted_auth:
+            - read:layertree
+
+components:
+  schemas:
+    layertree: 
+      type: object
+      properties: 
+        servers: 
+          type: array
+          items:
+           $ref: '#/components/schemas/server'
+        layers: 
+          type: array
+          items:
+            $ref: '#/components/schemas/layer'
+    serverList:
+      type: array
+      items:
+       $ref: '#/components/schemas/server'
+    server: 
+      type: object
+      properties: 
+        serverurl: 
+          type: string
+        title: 
+          type: string
+        type: 
+          type: string
+        version: 
+          type: string
+    layerList:
+      type: array
+      items:
+       $ref: '#/components/schemas/layer'
+    layer:
+      type: object
+      properties: 
+        title: 
+          type: string
+        queriable: 
+          type: boolean
+        name:
+          type: string
+        matrixset: 
+          type: string
+        serverid:
+          type: integer
+    aclList:
+      type: array
+      items:
+       $ref: '#/components/schemas/acl'
+    acl: 
+      type: object
+      properties: 
+        id: 
+          type: integer
+        layer_id: 
+          type: integer
+        role_id: 
+          type: integer
+    userList:
+      type: array
+      items:
+       $ref: '#/components/schemas/user'
+    user: 
+      type: object
+      properties: 
+        id: 
+          type: integer
+        email: 
+          type: string
+        name: 
+          type: string
+        lastname: 
+          type: string
+    roleList:
+      type: array
+      items:
+       $ref: '#/components/schemas/role'
+    role: 
+      type: object
+      properties: 
+        id: 
+          type: integer
+        name: 
+          type: string
+    bindingsList:
+      type: array
+      items:
+       $ref: '#/components/schemas/bindings'
+    bindings: 
+      type: object
+      properties: 
+        id: 
+          type: integer
+        user_id: 
+          type: integer
+        role_id: 
+          type: integer
+  securitySchemes:
+    restricted_auth:
+      type: oauth2
+      flows:
+        implicit:
+          authorizationUrl: https://petstore3.swagger.io/oauth/authorize
+          scopes:
+            write:config: modify config
+            read:config: read your restricted stuff
+            read:layertree: read layertree for client config
