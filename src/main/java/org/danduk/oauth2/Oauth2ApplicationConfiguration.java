@@ -5,6 +5,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+import org.springframework.security.config.annotation.web.configurers.oauth2.client.OAuth2LoginConfigurer;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.HttpStatusEntryPoint;
 import org.springframework.security.web.csrf.CookieCsrfTokenRepository;
@@ -14,7 +15,7 @@ import org.springframework.security.web.csrf.CookieCsrfTokenRepository;
 public class Oauth2ApplicationConfiguration {
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-        http
+        OAuth2LoginConfigurer<HttpSecurity> httpSecurityOAuth2LoginConfigurer = http
                 .authorizeHttpRequests(requests -> requests
                         .requestMatchers("/users").authenticated()
                         .and()
@@ -31,9 +32,10 @@ public class Oauth2ApplicationConfiguration {
 //                )
                 .authorizeHttpRequests(requests -> requests
 //                        .anyRequest().authenticated()
-                        .anyRequest().permitAll()
+                                .anyRequest().permitAll()
                 )
                 .csrf(c -> c
+
                         //.csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse())
                         .disable()
                 )
