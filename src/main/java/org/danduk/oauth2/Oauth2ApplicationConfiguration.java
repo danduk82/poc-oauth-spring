@@ -16,8 +16,8 @@ public class Oauth2ApplicationConfiguration {
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         OAuth2LoginConfigurer<HttpSecurity> httpSecurityOAuth2LoginConfigurer = http
-                .authorizeHttpRequests(requests -> requests
-                        .requestMatchers("/users").authenticated()
+                .authorizeRequests(requests -> requests
+                        .antMatchers("/users").authenticated()
                         .and()
 
                 )
@@ -30,7 +30,7 @@ public class Oauth2ApplicationConfiguration {
 //                .authorizeHttpRequests(requests -> requests
 //                        .requestMatchers("/").permitAll()
 //                )
-                .authorizeHttpRequests(requests -> requests
+                .authorizeRequests(requests -> requests
 //                        .anyRequest().authenticated()
                                 .anyRequest().permitAll()
                 )

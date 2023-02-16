@@ -1,6 +1,6 @@
 package org.danduk.oauth2.integration.persistence.entities;
 
-import jakarta.persistence.*;
+import javax.persistence.*;
 
 import java.util.Objects;
 
