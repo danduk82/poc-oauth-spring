@@ -740,6 +740,8 @@ components:
     server: 
       type: object
       properties: 
+        id: 
+          type: integer
         serverurl: 
           type: string
         title: 
@@ -754,7 +756,9 @@ components:
        $ref: '#/components/schemas/layer'
     layer:
       type: object
-      properties: 
+      properties:
+        id: 
+          type: integer 
         title: 
           type: string
         queriable: 

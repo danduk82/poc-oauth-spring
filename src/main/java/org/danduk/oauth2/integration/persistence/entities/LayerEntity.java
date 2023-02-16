@@ -1,7 +1,6 @@
 package org.danduk.oauth2.integration.persistence.entities;
 
 import javax.persistence.*;
-
 import java.util.Objects;
 
 @Entity
@@ -13,7 +12,7 @@ public class LayerEntity {
     private long id;
     @Basic
     @Column(name = "fk_server_id")
-    private Long fkServerId;
+    private long fkServerId;
     @Basic
     @Column(name = "name")
     private String name;
@@ -23,6 +22,9 @@ public class LayerEntity {
     @Basic
     @Column(name = "matrixset")
     private String matrixset;
+    @Basic
+    @Column(name = "queriable")
+    private Boolean queriable;
 
     public long getId() {
         return id;
@@ -64,16 +66,24 @@ public class LayerEntity {
         this.matrixset = matrixset;
     }
 
+    public Boolean getQueriable() {
+        return queriable;
+    }
+
+    public void setQueriable(Boolean queriable) {
+        this.queriable = queriable;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         LayerEntity that = (LayerEntity) o;
-        return id == that.id && Objects.equals(fkServerId, that.fkServerId) && Objects.equals(name, that.name) && Objects.equals(title, that.title) && Objects.equals(matrixset, that.matrixset);
+        return id == that.id && Objects.equals(fkServerId, that.fkServerId) && Objects.equals(name, that.name) && Objects.equals(title, that.title) && Objects.equals(matrixset, that.matrixset) && Objects.equals(queriable, that.queriable);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, fkServerId, name, title, matrixset);
+        return Objects.hash(id, fkServerId, name, title, matrixset, queriable);
     }
 }

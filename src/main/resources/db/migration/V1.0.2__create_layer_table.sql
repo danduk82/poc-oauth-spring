@@ -8,7 +8,8 @@ CREATE TABLE LAYER
     FK_SERVER_ID INT8,
     NAME varchar(256),
     TITLE varchar(256),
-    MATRIXSET varchar(256)
+    MATRIXSET varchar(256),
+    QUERIABLE bool
 );
 
 

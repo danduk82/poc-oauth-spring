@@ -40,9 +40,9 @@ public class Oauth2ApplicationConfiguration {
                         .disable()
                 )
 
-                .exceptionHandling(e -> e
-                        .authenticationEntryPoint(new HttpStatusEntryPoint(HttpStatus.UNAUTHORIZED))
-                )
+//                .exceptionHandling(e -> e
+//                        .authenticationEntryPoint(new HttpStatusEntryPoint(HttpStatus.UNAUTHORIZED))
+//                )
                 .oauth2Login();
 
         return http.build();
