@@ -26,7 +26,6 @@ public class LayerApiDelegateBean  implements LayerApiDelegate {
 
     @Override
     public ResponseEntity<Layer> layerGetById(Integer id){
-        //final var responseBody = new ResponseEntity<>();
         try {
             return new ResponseEntity<>(layerService.findLayerById(id), HttpStatus.OK);
         }

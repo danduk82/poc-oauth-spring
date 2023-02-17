@@ -746,8 +746,11 @@ components:
           type: string
         title: 
           type: string
-        type: 
+        ogcprotocol: 
           type: string
+          anyOf:
+            - "wms"
+            - "wmts"
         version: 
           type: string
     layerList:
