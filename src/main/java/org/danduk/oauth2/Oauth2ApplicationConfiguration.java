@@ -17,7 +17,7 @@ public class Oauth2ApplicationConfiguration {
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         OAuth2LoginConfigurer<HttpSecurity> httpSecurityOAuth2LoginConfigurer = http
                 .authorizeRequests(requests -> requests
-                        .antMatchers("/users").authenticated()
+                        .antMatchers("/users", "/api/**").authenticated()
                         .and()
 
                 )

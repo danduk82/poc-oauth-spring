@@ -2,11 +2,9 @@ package org.danduk.oauth2.domain.mapper;
 
 import org.danduk.oauth2.gen.model.Layer;
 import org.danduk.oauth2.gen.model.Server;
-import org.danduk.oauth2.integration.persistence.entities.ServerEntity;
 import org.danduk.oauth2.integration.persistence.entities.views.FilteredServersEntity;
 import org.danduk.oauth2.integration.persistence.entities.views.MergedLayerAclEntity;
 
-import java.util.List;
 
 public class LayerTreeMapper {
 
