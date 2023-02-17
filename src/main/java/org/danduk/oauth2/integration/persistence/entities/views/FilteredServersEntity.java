@@ -1,12 +1,9 @@
 package org.danduk.oauth2.integration.persistence.entities.views;
 
-import javax.persistence.Basic;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.util.Objects;
 
-@Entity
+@Embeddable
 @Table(name = "filtered_servers", schema = "settings", catalog = "oauth")
 public class FilteredServersEntity {
     @Basic
@@ -35,56 +32,28 @@ public class FilteredServersEntity {
         return userEmail;
     }
 
-    public void setUserEmail(String userEmail) {
-        this.userEmail = userEmail;
-    }
-
     public Long getId() {
         return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
     }
 
     public String getOgcprotocol() {
         return ogcprotocol;
     }
 
-    public void setOgcprotocol(String ogcprotocol) {
-        this.ogcprotocol = ogcprotocol;
-    }
-
     public String getTitle() {
         return title;
-    }
-
-    public void setTitle(String title) {
-        this.title = title;
     }
 
     public String getVersion() {
         return version;
     }
 
-    public void setVersion(String version) {
-        this.version = version;
-    }
-
     public String getUrl() {
         return url;
     }
 
-    public void setUrl(String url) {
-        this.url = url;
-    }
-
     public Boolean getQueryable() {
         return queryable;
-    }
-
-    public void setQueryable(Boolean queryable) {
-        this.queryable = queryable;
     }
 
     @Override
