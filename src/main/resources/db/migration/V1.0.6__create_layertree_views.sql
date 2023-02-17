@@ -1,5 +1,6 @@
-create view filtered_servers(user_email, id, ogcprotocol, title, version, url, queryable) as
-SELECT DISTINCT users.email AS user_email,
+create view filtered_servers(pk ,user_email, id, ogcprotocol, title, version, url, queryable) as
+SELECT DISTINCT CONCAT(users.email, CAST(s.id as VARCHAR(4))) as pk,
+                users.email AS user_email,
                 s.id,
                 s.ogcprotocol,
                 s.title,
@@ -14,8 +15,10 @@ FROM users
          JOIN server s ON s.id = l.fk_server_id;
 
 
-create view merged_layer_acl (user_email, user_id, id, fk_server_id, name, title, matrixset, queriable) as
-SELECT users.email AS user_email,
+create view merged_layer_acl (pk, user_email, user_id, id, fk_server_id, name, title, matrixset, queriable) as
+SELECT
+       CONCAT(users.email, CAST(l.id as VARCHAR(4))) as pk,
+       users.email AS user_email,
        users.id    AS user_id,
        l.id,
        l.fk_server_id,
